@@ -1,5 +1,5 @@
 {
-  "name": "deep-thoughts",
+  "name": "kross",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Theresa2013/deep-thoughts.git"
+    "url": "git+https://github.com/A-Hask/Kross.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Theresa2013/deep-thoughts/issues"
+    "url": "https://github.com/A-Hask/Kross.git/issues"
   },
-  "homepage": "https://github.com/Theresa2013/deep-thoughts#readme",
+  "homepage": "https://github.com/A-Hask/Kross.git#readme",
   "devDependencies": {
     "concurrently": "^7.3.0"
   }
