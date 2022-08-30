@@ -1,12 +1,13 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Post } = require("../models");
 
 const resolvers = {
   Query: {
-    helloWorld: () => {
-      return 'Hello world!';
-    }
-  }
+    posts: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Post.find(params).sort({ createdAt: -1 });
+    },
+  },
 };
 
 module.exports = resolvers;
