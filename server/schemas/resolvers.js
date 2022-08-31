@@ -29,7 +29,7 @@ const resolvers = {
       return User.find()
         .select("-__v -password")
         .populate("krossies")
-        .populate("posts");
+        .populate('posts');
     },
     // get a user by username
     user: async (parent, { username }) => {
