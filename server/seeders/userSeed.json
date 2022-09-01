@@ -5,44 +5,49 @@
     "password": "CG0IfJRxeSZSWyp",
     "krossies": [],
     "posts": [],
-    "games": []
+    "games": ["Among us", "Splatoon"]
   },
   {
     "username": "Tyree17",
     "email": "Tyree17_Tillman@yahoo.com",
     "password": "TLhhBXjOVGKWP43",
-    "krossies": []
+    "krossies": [],
+    "games": ["Among us", "Call of Duty"]
   },
   {
     "username": "Shyann.Crist57",
     "email": "Shyann.Crist57.Mayer50@yahoo.com",
     "password": "sm0bZJCUaWqQs8k",
     "posts": [],
-    "games": []
+    "games": ["Borderlands", "Fortnite"]
   },
   {
     "username": "Elton_Heaney",
     "email": "Elton_Heaney.Kemmer6@yahoo.com",
     "password": "3dVgRgSQmrGLaQE",
     "krossies": [],
-    "posts": []
+    "posts": [],
+    "games": ["Fortnite", "Halo"]
   },
   {
     "username": "Annabelle79",
     "email": "Annabelle7973@hotmail.com",
-    "password": "vhk6h6KQEJVC_kQ"
+    "password": "vhk6h6KQEJVC_kQ",
+    "games": ["Animal Crossing", "Borderlands"]
   },
   {
     "username": "Osbaldo.Jerde",
     "email": "Osbaldo.Jerde13@yahoo.com",
     "password": "lxmC3cI7FDk4j5W",
     "krossies": [],
-    "posts": []
+    "posts": [],
+    "games": ["Super Smash Bros", "Mario Kart"]
   },
   {
     "username": "Dwight.Reilly",
     "email": "Dwight.Reilly.Krajcik52@gmail.com",
     "password": "9DJc9huo_AJBiMp",
-    "krossies": []
+    "krossies": [],
+    "games": ["Mario Kart", "Animal Crossing"]
   }
 ]
