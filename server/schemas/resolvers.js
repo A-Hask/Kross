@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { assertNamedType } = require("graphql");
-const { User, Post } = require("../models");
+const { User, Post, Game } = require("../models");
 
 const resolvers = {
   Query: {
@@ -29,14 +29,16 @@ const resolvers = {
       return User.find()
         .select("-__v -password")
         .populate("krossies")
-        .populate('posts');
+        .populate('posts')
+        .populate('games');
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select("-__v -password")
         .populate("krossies")
-        .populate("posts");
+        .populate("posts")
+        .populate("games");
     },
   },
   Mutation: {
