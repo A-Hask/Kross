@@ -40,6 +40,10 @@ const resolvers = {
         .populate("posts")
         .populate("games");
     },
+    game: async (parent, { gamename }) => {
+      return Game.findOne({ gamename })
+        .select("-__v ")
+        .populate("users");},
   },
   Mutation: {
     addUser: async (parent, args) => {
