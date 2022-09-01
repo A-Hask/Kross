@@ -22,6 +22,12 @@ const typeDefs = gql`
     krossieCount: Int
     posts: [Post]
     krossies: [User]
+    games: [Game]
+  }
+  type Game {
+    _id: ID
+    gamename: String
+    users: [User]
   }
   type Query {
     me: User
@@ -29,6 +35,7 @@ const typeDefs = gql`
     user(username: String!): User
     posts(username: String): [Post]
     post(_id: ID!): Post
+    game(gamename: String!): [User]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
@@ -36,6 +43,7 @@ const typeDefs = gql`
     addPost(postText: String!): Post
     addComment(commentId: ID!, commentBody: String!): Post
     addKrossie(krossieId: ID!): User
+    addGame(gamename: String!): Game
   }
   type Auth {
     token: ID!

@@ -29,6 +29,12 @@ const userSchema = new Schema(
         ref: "Post",
       },
     ],
+    games: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Game'
+      }
+    ],
     krossies: [
       {
         type: Schema.Types.ObjectId,
