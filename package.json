@@ -22,5 +22,10 @@
   "homepage": "https://github.com/A-Hask/Kross.git#readme",
   "devDependencies": {
     "concurrently": "^7.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "jwt-decode": "^3.1.2",
+    "react-bootstrap": "^2.5.0"
   }
 }
