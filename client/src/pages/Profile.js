@@ -7,7 +7,7 @@ import { QUERY_USER } from '../utils/queries';
 const Profile = () => {
     const { username: userParam } = useParams();
 
-    const { loading, data } = useQuery(QUERY_USER, {
+    const { loading } = useQuery(QUERY_USER, {
         variables: { username: userParam }
     });
 
