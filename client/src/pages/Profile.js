@@ -11,8 +11,6 @@ const Profile = () => {
         variables: { username: userParam }
     });
 
-    const user = data?.user || {};
-
     if (loading) {
         return <div>Loading...</div>;
     }
