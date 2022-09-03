@@ -37,7 +37,7 @@ function App() {
                 <Route path=":username" element={<Profile />} />
                 <Route path="" element={<Profile />} />
               </Route>
-              <Route path="/post" element={<SinglePost />} />
+              <Route path="/post/:id" element={<SinglePost />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </div>
