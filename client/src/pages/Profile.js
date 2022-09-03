@@ -31,12 +31,12 @@ const Profile = () => {
           <PostList posts={user.posts} title={`${user.username}'s posts...`} />
         </div>
         <div className="col-12 col-lg-3 mb-3">
-    <KrossieList
-      username={user.username}
-      krossieCount={user.krossieCount}
-      krossies={user.krossies}
-    />
-  </div>
+          <KrossieList
+            username={user.username}
+            krossieCount={user.krossieCount}
+            krossies={user.krossies}
+          />
+        </div>
       </div>
     </div>
   );
