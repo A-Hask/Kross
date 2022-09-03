@@ -21,6 +21,14 @@ const Signup = () => {
     }
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    updateFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <main className="w-100 mt-auto bg-secondary p-4">
       <form>
