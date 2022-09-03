@@ -9,9 +9,10 @@ const Login = () => {
 
   const handleFormSubmit = async (event) => {
     event.PreventDefault();
+
     try {
-      const { response } = await login({ variables: { ...formState } });
-      Auth.login(response.login.token);
+      const { data } = await login({ variables: { ...formState } });
+      Auth.login(data.login.token);
     } catch (error) {
       console.log(error);
     }
@@ -23,10 +24,11 @@ const Login = () => {
       ...formState,
       [name]: value,
     });
+
     // clear form values
     updateFormState({
-      email: '',
-      password: '',
+      ...formState,
+      [name]: value,
     });
 
 
@@ -61,7 +63,7 @@ const Login = () => {
           </div>
         </div>
       </form>
-      <div className="container"></div>
+      {error && <div>Login failed</div>}
     </main>
   );
 };
