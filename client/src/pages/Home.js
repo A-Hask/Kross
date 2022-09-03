@@ -4,7 +4,7 @@ import Login from "../components/Login";
 // import Auth from "../utils/auth";
 
 const Home = () => {
-  const loggedIn = Auth.loggedIn();
+  //   const loggedIn = Auth.loggedIn();
 
   return (
     <main>
