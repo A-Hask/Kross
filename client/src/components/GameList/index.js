@@ -11,7 +11,7 @@ const GameList = ({ games }) => {
         {games &&
           games.map((game) => (
             <p className="pill mb-3" key={game._id}>
-              {game.gameBody} //{" "}
+              {game.gameBody}{" "}
               <Link
                 to={`/profile/${game.username}`}
                 style={{ fontWeight: 700 }}

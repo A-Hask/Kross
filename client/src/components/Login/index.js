@@ -15,6 +15,11 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
+    // clear form values
+    updateFormState({
+      email: "",
+      password: "",
+    });
   };
 
   const handleChange = (event) => {
@@ -23,13 +28,6 @@ const Login = () => {
       ...formState,
       [name]: value,
     });
- // clear form values
- updateFormState({
-  email: '',
-  password: '',
-});
-
-
   };
 
   return (
