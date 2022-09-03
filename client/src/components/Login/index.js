@@ -61,6 +61,7 @@ const Login = () => {
           </div>
         </div>
       </form>
+      {error && <div>Login failed</div>}
       <div className="container"></div>
     </main>
   );
