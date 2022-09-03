@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import PostList from "../components/PostList";
+import KrossieList from '../components/KrossieList';
 
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
@@ -29,6 +30,13 @@ const Profile = () => {
         <div className="col-12 mb-3 col-lg-8">
           <PostList posts={user.posts} title={`${user.username}'s posts...`} />
         </div>
+        <div className="col-12 col-lg-3 mb-3">
+    <KrossieList
+      username={user.username}
+      krossieCount={user.krossieCount}
+      krossies={user.krossies}
+    />
+  </div>
       </div>
     </div>
   );
