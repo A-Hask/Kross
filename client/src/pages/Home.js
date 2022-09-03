@@ -1,7 +1,7 @@
 import React from "react";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
-import Auth from "../utils/auth";
+// import Auth from "../utils/auth";
 
 const Home = () => {
   const loggedIn = Auth.loggedIn();
