@@ -4,7 +4,6 @@ const gameSchema = new Schema({
   gamename: [
     {
       type: String,
-      required: true,
       trim: true,
     },
   ],
