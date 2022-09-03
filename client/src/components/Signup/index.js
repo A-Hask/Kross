@@ -15,7 +15,9 @@ const Signup = () => {
     event.PreventDefault();
     try {
       const { data } = await addUser({ variables: { ...formState } });
+
       console.log(data);
+
       Auth.login(data.addUser.token);
     } catch (error) {
       console.log(error);
