@@ -41,7 +41,7 @@ const Signup = () => {
           type="username"
           placeholder="Enter Username"
           name="username"
-          value={formState.email}
+          value={formState.username}
           onChange={handleChange}
         />
         <div>
@@ -60,7 +60,7 @@ const Signup = () => {
             type="password"
             placeholder="Enter Password"
             name="password"
-            value={formState.email}
+            value={formState.password}
             onChange={handleChange}
           />
           <br></br>
