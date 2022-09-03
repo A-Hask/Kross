@@ -23,11 +23,11 @@ const Login = () => {
       ...formState,
       [name]: value,
     });
- // clear form values
- updateFormState({
-  email: '',
-  password: '',
-});
+    // clear form values
+    updateFormState({
+      email: '',
+      password: '',
+    });
 
 
   };
