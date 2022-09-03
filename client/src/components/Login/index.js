@@ -19,6 +19,8 @@ const Login = () => {
               type='email'
               placeholder='Enter Password'
             />
+            <br></br>
+            <button>Submit</button>
           </div>
         </div>
       </form>

@@ -27,6 +27,8 @@ const Signup = () => {
           type='password'
           placeholder='Enter Password'
         />
+        <br></br>
+        <button>Submit</button>
       </div>
     </main>
   );
