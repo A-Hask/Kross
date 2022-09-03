@@ -1,78 +1,69 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
+import React, { useState } from "react";
+import { LOGIN_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
+import { useMutation } from "@apollo/client";
 
-import Auth from '../../utils/auth';
-
-const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+const Login = () => {
   const [login, { error }] = useMutation(LOGIN_USER);
+  const [formState, updateFormState] = useState({ email: "", password: "" });
 
-  // update state based on form input changes
+  const handleFormSubmit = async (event) => {
+    event.PreventDefault();
+
+    try {
+      const { data } = await login({ variables: { ...formState } });
+      Auth.login(data.login.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormState({
+    updateFormState({
       ...formState,
       [name]: value,
     });
-  };
-
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
 
     // clear form values
-    setFormState({
-      email: '',
-      password: '',
+    updateFormState({
+      ...formState,
+      [name]: value,
     });
+
+
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-md-6">
-        <div className="card">
-          <h4 className="card-header">Login</h4>
-          <div className="card-body">
-            <form onSubmit={handleFormSubmit}>
-              <input
-                className="form-input"
-                placeholder="Your email"
-                name="email"
-                type="email"
-                id="email"
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <input
-                className="form-input"
-                placeholder="******"
-                name="password"
-                type="password"
-                id="password"
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <button className="btn d-block w-100" type="submit">
-                Submit
-              </button>
-            </form>
-
-            {error && <div>Login failed</div>}
+    <main className="w-100 mt-auto bg-secondary p-4">
+      <form>
+        <div>
+          <h3>Log In</h3>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <br></br>
+            <button onClick={handleFormSubmit}>Submit</button>
           </div>
         </div>
-      </div>
+      </form>
+      {error && <div>Login failed</div>}
     </main>
   );
 };

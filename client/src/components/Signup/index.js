@@ -4,19 +4,19 @@ import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 
 const Signup = () => {
-  const [signup, { error }] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
   const [formState, updateFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    event.PreventDefault();
     try {
-      const { response } = await signup({ variables: { ...formState } });
-      console.log(response);
-      Auth.login(response.signup.token);
+      const { data } = await addUser({ variables: { ...formState } });
+      console.log(data);
+      Auth.login(data.addUser.token);
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +68,7 @@ const Signup = () => {
           <button onClick={handleFormSubmit}>Submit</button>
         </div>
       </form>
-      {error && <div>Signup failed</div>}
+      {error && <div>Signup Failed</div>}
     </main>
   );
 };
