@@ -2,29 +2,58 @@ import { useParams } from "react-router-dom";
 import PostList from "../components/PostList";
 import GameList from "../components/GameList";
 import KrossieList from "../components/KrossieList";
+import Auth from "../utils/auth";
 
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { ADD_KROSSIE } from "../utils/mutations";
+
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import Home from "./Home";
 
 const Profile = () => {
   const { username: userParam } = useParams();
-
-  const { loading, data } = useQuery(QUERY_USER, {
+  const [addKrossie] = useMutation(ADD_KROSSIE);
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
-  const user = data?.user || {};
+  const user = data?.me || data?.user || {};
+
+  // navigate to profile page if username is logged in user
+  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Home to="/profile" />;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!user?.username) {
+    return <h4>You need to be logged in to see this page.</h4>;
+  }
+
+  const handleClick = async () => {
+    try {
+      await addKrossie({
+        variables: { id: user._id },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {user.username}'s profile.
+          Viewing {userParam ? `${user.username}'s` : "your"} profile.
         </h2>
+
+        {userParam && (
+          <button className="btn ml-auto" onClick={handleClick}>
+            Add Krossie
+          </button>
+        )}
       </div>
 
       <div className="flex-row justify-space-between mb-3">
