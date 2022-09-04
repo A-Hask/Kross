@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import PostList from "../components/PostList";
 import GameList from "../components/GameList";
 import KrossieList from "../components/KrossieList";
@@ -10,8 +10,9 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Home from "./Home";
 
-const Profile = () => {
+const Profile = (props) => {
   const { username: userParam } = useParams();
+
   const [addKrossie] = useMutation(ADD_KROSSIE);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
@@ -21,7 +22,7 @@ const Profile = () => {
 
   // navigate to profile page if username is logged in user
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Home to="/profile" />;
+    return <Navigate to="/profile" />;
   }
 
   if (loading) {
