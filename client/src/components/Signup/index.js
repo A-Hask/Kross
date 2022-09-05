@@ -12,7 +12,7 @@ const Signup = () => {
   });
 
   const handleFormSubmit = async (event) => {
-    event.PreventDefault();
+    event.preventDefault();
     try {
       const { data } = await addUser({ variables: { ...formState } });
 

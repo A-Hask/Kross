@@ -1,6 +1,8 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { assertNamedType } = require("graphql");
 const { User, Post, Game } = require("../models");
+const { signToken } = require('../utils/auth');
+
 
 const resolvers = {
   Query: {
