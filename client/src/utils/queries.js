@@ -18,6 +18,7 @@ export const QUERY_USER = gql`
       }
       games {
         _id
+        gamename
       }
     }
   }
@@ -100,6 +101,10 @@ export const QUERY_ME_BASIC = gql`
       krossies {
         _id
         username
+      }
+      games {
+        _id
+        gamename
       }
     }
   }
