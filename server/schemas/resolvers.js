@@ -8,7 +8,7 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({_id: context.user._id})
+        const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("posts")
           .populate("krossies");
@@ -45,7 +45,12 @@ const resolvers = {
     game: async (parent, { gamename }) => {
       return Game.findOne({ gamename })
         .select("-__v ")
-        .populate("users");},
+        .populate("users");
+    },
+    games: async () => {
+      return Game.find()
+        .populate('users');
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -105,7 +110,7 @@ const resolvers = {
       }
       throw new AuthenticationError("Please log in first!");
     },
-    addKrossie: async (parent, { friendId }, context) => {
+    addKrossie: async (parent, { krossieId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -116,8 +121,27 @@ const resolvers = {
         return updatedUser;
       }
       throw new AuthenticationError("Please log in first!");
-    },
-  },
-};
+    }
+    ,
+    addGame: async (parent, { gamename }, context) => {
+      const game = await Game.create(
+        { gamename },
+       // { $addToSET: { users: context.user.id } }
+      );
+
+      return game;
+    }
+    // ,
+    // addToExistingGame: async (parent, { gameId }, context) => {
+    //   const game = await Game.findOneAndUpdate(
+    //     { _id: gameId },
+    //     { $addToSET: { users: context.user.id } }
+    //   );
+
+    //   return game;
+    // }
+  }
+}
+
 
 module.exports = resolvers;
