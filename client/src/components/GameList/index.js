@@ -4,7 +4,7 @@ const GameList = ({ games, title }) => {
   return (
     <div className="card mb-3">
       <div className="card-header">
-        <span className="text-light">Games</span>
+        <h3>{title}</h3>
       </div>
       <div className="card-body">
         {games &&
