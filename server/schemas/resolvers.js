@@ -1,8 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { assertNamedType } = require("graphql");
 const { User, Post, Game } = require("../models");
-const { signToken } = require('../utils/auth');
-
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -31,8 +30,8 @@ const resolvers = {
       return User.find()
         .select("-__v -password")
         .populate("krossies")
-        .populate('posts')
-        .populate('games');
+        .populate("posts")
+        .populate("games");
     },
     // get a user by username
     user: async (parent, { username }) => {
@@ -43,13 +42,10 @@ const resolvers = {
         .populate("games");
     },
     game: async (parent, { gamename }) => {
-      return Game.findOne({ gamename })
-        .select("-__v ")
-        .populate("users");
+      return Game.findOne({ gamename }).select("-__v ").populate("users");
     },
     games: async () => {
-      return Game.find()
-        .populate('users');
+      return Game.find().populate("users");
     },
   },
   Mutation: {
@@ -121,16 +117,15 @@ const resolvers = {
         return updatedUser;
       }
       throw new AuthenticationError("Please log in first!");
-    }
-    ,
+    },
     addGame: async (parent, { gamename }, context) => {
       const game = await Game.create(
-        { gamename },
-       // { $addToSET: { users: context.user.id } }
+        { gamename }
+        // { $addToSET: { users: context.user.id } }
       );
 
       return game;
-    }
+    },
     // ,
     // addToExistingGame: async (parent, { gameId }, context) => {
     //   const game = await Game.findOneAndUpdate(
@@ -140,8 +135,7 @@ const resolvers = {
 
     //   return game;
     // }
-  }
-}
-
+  },
+};
 
 module.exports = resolvers;

@@ -18,7 +18,7 @@ db.once("open", async () => {
       const user = await User.findOneAndUpdate(
         { username: post.username },
         {
-          $addToSet: {
+          $push: {
             posts: post._id,
             games: game._id,
           },

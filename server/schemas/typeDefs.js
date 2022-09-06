@@ -15,6 +15,10 @@ const typeDefs = gql`
     createdAt: String
     username: String
   }
+  type Game {
+    _id: ID
+    gamename: String
+  }
   type User {
     _id: ID
     username: String
@@ -24,11 +28,7 @@ const typeDefs = gql`
     krossies: [User]
     games: [Game]
   }
-  type Game {
-    _id: ID
-    gamename: String
-    users: [User]
-  }
+
   type Query {
     me: User
     users: [User]

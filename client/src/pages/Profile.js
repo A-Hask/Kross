@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import PostList from "../components/PostList";
 import GameList from "../components/GameList";
 import KrossieList from "../components/KrossieList";
 import Auth from "../utils/auth";
-import PostForm from '../components/PostForm';
+import PostForm from "../components/PostForm";
 
 import { ADD_KROSSIE } from "../utils/mutations";
 
@@ -15,11 +15,13 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 const Profile = () => {
   const { username: userParam } = useParams();
   const [addKrossie] = useMutation(ADD_KROSSIE);
+  // const [addGame] = useMutation(ADD_GAME);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
   const user = data?.me || data?.user || {};
+  console.log(user.games);
 
   // navigate to profile page if username is logged in user
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -31,17 +33,13 @@ const Profile = () => {
   }
 
   if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this page.
-      </h4>
-    );
+    return <h4>You need to be logged in to see this page.</h4>;
   }
 
   const handleClick = async () => {
     try {
       await addKrossie({
-        variables: { id: user._id }
+        variables: { id: user._id },
       });
     } catch (e) {
       console.error(e);
@@ -52,7 +50,7 @@ const Profile = () => {
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing {userParam ? `${user.username}'s` : "your"} profile.
         </h2>
 
         {userParam && (
