@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -17,12 +17,12 @@ export const QUERY_USER = gql`
         commentCount
       }
       games {
-          _id
+        _id
+        gamename
       }
     }
   }
 `;
-
 
 export const QUERY_POSTS = gql`
   query posts($username: String) {
@@ -60,7 +60,6 @@ export const QUERY_POST = gql`
   }
 `;
 
-
 export const QUERY_ME = gql`
   {
     me {
@@ -84,10 +83,13 @@ export const QUERY_ME = gql`
         _id
         username
       }
+      games {
+        _id
+        gamename
+      }
     }
   }
 `;
-
 
 export const QUERY_ME_BASIC = gql`
   {
@@ -99,6 +101,10 @@ export const QUERY_ME_BASIC = gql`
       krossies {
         _id
         username
+      }
+      games {
+        _id
+        gamename
       }
     }
   }

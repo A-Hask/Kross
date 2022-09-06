@@ -1,22 +1,26 @@
 const userSeeds = require("./userSeed.json");
+const gameSeeds = require("./gameSeed.json");
 const postSeeds = require("./postSeed.json");
 const db = require("../config/connection");
-const { Post, User } = require("../models");
+const { Post, User, Game } = require("../models");
 
 db.once("open", async () => {
   try {
-    await Post.deleteMany({});
     await User.deleteMany({});
+    await Post.deleteMany({});
+    await Game.deleteMany({});
 
     await User.create(userSeeds);
 
     for (let i = 0; i < postSeeds.length; i++) {
-      const { _id, postAuthor } = await Post.create(postSeeds[i]);
+      const game = await Game.create(gameSeeds[i]);
+      const post = await Post.create(postSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: postAuthor },
+        { username: post.username },
         {
-          $addToSet: {
-            posts: _id,
+          $push: {
+            posts: post._id,
+            games: game._id,
           },
         }
       );
