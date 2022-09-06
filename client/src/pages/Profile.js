@@ -4,6 +4,7 @@ import PostList from "../components/PostList";
 import GameList from "../components/GameList";
 import KrossieList from "../components/KrossieList";
 import Auth from "../utils/auth";
+import PostForm from '../components/PostForm';
 
 import { ADD_KROSSIE } from "../utils/mutations";
 
@@ -76,6 +77,7 @@ const Profile = () => {
           />
         </div>
       </div>
+      <div className="mb-3">{!userParam && <PostForm />}</div>
     </div>
   );
 };

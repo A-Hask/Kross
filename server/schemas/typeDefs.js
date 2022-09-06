@@ -35,7 +35,7 @@ const typeDefs = gql`
     user(username: String!): User
     posts(username: String): [Post]
     post(_id: ID!): Post
-    game(gamename: String!): [User]
+  game(gamename: String!): [User]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
