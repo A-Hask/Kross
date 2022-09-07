@@ -3,7 +3,7 @@ import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 
-const games = ["a", "b", "c", "d"];
+const games = ["Fortnite", "Animal Crossing", "Among Us", "Pokemon"];
 
 const Signup = () => {
   const [addUser, { error }] = useMutation(ADD_USER);
