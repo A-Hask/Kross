@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { useMutation } from "@apollo/client";
 
 const Signup = () => {
   const [addUser, { error }] = useMutation(ADD_USER);
@@ -66,6 +66,15 @@ const Signup = () => {
             value={formState.password}
             onChange={handleChange}
           />
+          <div>
+            <label>Games:</label>
+            <input
+              type=""
+              placeholder="Choose one or more games:"
+              value={formState.games}
+              onChange={handleChange}
+            />
+          </div>
           <br></br>
           <button onClick={handleFormSubmit}>Submit</button>
         </div>
