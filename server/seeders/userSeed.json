@@ -10,15 +10,23 @@
   {
     "username": "Tyree17",
     "email": "Tyree17_Tillman@yahoo.com",
+<<<<<<< HEAD
     "password": "12345",
     "krossies": [],
+=======
+    "password": "TLhhBXjOVGKWP43",
+    "krossies": [],
+    "posts": [],
+>>>>>>> 5ab6d0980691350f3e497ea44bb69b9ba793d948
     "games": []
   },
   {
     "username": "Shyann.Crist57",
     "email": "Shyann.Crist57.Mayer50@yahoo.com",
     "password": "sm0bZJCUaWqQs8k",
-    "posts": []
+    "krossies": [],
+    "posts": [],
+    "games": []
   },
   {
     "username": "Elton_Heaney",

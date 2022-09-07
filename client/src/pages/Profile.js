@@ -1,28 +1,32 @@
+import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import PostList from "../components/PostList";
 import GameList from "../components/GameList";
 import KrossieList from "../components/KrossieList";
 import Auth from "../utils/auth";
+import PostForm from "../components/PostForm";
 
 import { ADD_KROSSIE } from "../utils/mutations";
 
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import Home from "./Home";
+//import Home from "./Home";
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
 
   const [addKrossie] = useMutation(ADD_KROSSIE);
+  // const [addGame] = useMutation(ADD_GAME);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
   const user = data?.me || data?.user || {};
+  console.log(user.games);
 
   // navigate to profile page if username is logged in user
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/profile:username" />;
   }
 
   if (loading) {
@@ -72,6 +76,7 @@ const Profile = (props) => {
           />
         </div>
       </div>
+      <div className="mb-3">{!userParam && <PostForm />}</div>
     </div>
   );
 };

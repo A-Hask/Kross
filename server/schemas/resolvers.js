@@ -1,15 +1,17 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { assertNamedType } = require("graphql");
 const { User, Post, Game } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    me: async (parent, args) => {
+    me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({})
+        const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("posts")
-          .populate("krossies");
+          .populate("krossies")
+          .populate("games");
 
         return userData;
       }
@@ -29,8 +31,8 @@ const resolvers = {
       return User.find()
         .select("-__v -password")
         .populate("krossies")
-        .populate('posts')
-        .populate('games');
+        .populate("posts")
+        .populate("games");
     },
     // get a user by username
     user: async (parent, { username }) => {
@@ -41,9 +43,11 @@ const resolvers = {
         .populate("games");
     },
     game: async (parent, { gamename }) => {
-      return Game.findOne({ gamename })
-        .select("-__v ")
-        .populate("users");},
+      return Game.findOne({ gamename }).select("-__v ").populate("users");
+    },
+    games: async () => {
+      return Game.find().populate("users");
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -103,7 +107,7 @@ const resolvers = {
       }
       throw new AuthenticationError("Please log in first!");
     },
-    addKrossie: async (parent, { friendId }, context) => {
+    addKrossie: async (parent, { krossieId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -115,6 +119,23 @@ const resolvers = {
       }
       throw new AuthenticationError("Please log in first!");
     },
+    addGame: async (parent, { gamename }, context) => {
+      const game = await Game.create(
+        { gamename }
+        // { $addToSET: { users: context.user.id } }
+      );
+
+      return game;
+    },
+    // ,
+    // addToExistingGame: async (parent, { gameId }, context) => {
+    //   const game = await Game.findOneAndUpdate(
+    //     { _id: gameId },
+    //     { $addToSET: { users: context.user.id } }
+    //   );
+
+    //   return game;
+    // }
   },
 };
 

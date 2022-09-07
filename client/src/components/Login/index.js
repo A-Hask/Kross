@@ -8,7 +8,7 @@ const Login = () => {
   const [formState, updateFormState] = useState({ email: "", password: "" });
 
   const handleFormSubmit = async (event) => {
-    event.PreventDefault();
+    event.preventDefault();
 
     try {
       const { data } = await login({ variables: { ...formState } });
