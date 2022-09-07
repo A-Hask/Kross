@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 
+const games = ["a", "b", "c", "d"];
+
 const Signup = () => {
   const [addUser, { error }] = useMutation(ADD_USER);
+  const [gameList, setGameList] = useState([]);
   const [formState, updateFormState] = useState({
     username: "",
     email: "",
@@ -31,6 +34,22 @@ const Signup = () => {
       [name]: value,
     });
   };
+
+  const handleCheck = (event) => {
+    const game = event.target.name;
+    console.log(event.target.checked);
+    if (event.target.checked && !gameList.includes(game)) {
+      setGameList([...gameList, game]);
+    } else if (!event.target.checked) {
+      // const index = gameList.indexOf(game);
+      // index >= 0 && gameList.splice(index, 1);
+      setGameList(gameList.filter((x) => x != game));
+    }
+  };
+
+  useEffect(() => {
+    console.log(gameList);
+  }, [gameList]);
 
   return (
     <main className="w-100 mt-auto bg-secondary p-4">
@@ -67,13 +86,20 @@ const Signup = () => {
             onChange={handleChange}
           />
           <div>
-            <label>Games:</label>
-            <input
-              type=""
-              placeholder="Choose one or more games:"
-              value={formState.games}
-              onChange={handleChange}
-            />
+            <h3>Games:</h3>
+            {games.map((game) => {
+              return (
+                <div>
+                  <input
+                    type="checkbox"
+                    key={game}
+                    name={game}
+                    onChange={handleCheck}
+                  />
+                  <label>{game}</label>
+                </div>
+              );
+            })}
           </div>
           <br></br>
           <button onClick={handleFormSubmit}>Submit</button>
