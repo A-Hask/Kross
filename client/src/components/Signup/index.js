@@ -4,15 +4,15 @@ import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const Signup = () => {
+  const [addUser, { error }] = useMutation(ADD_USER);
   const [formState, updateFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
-    event.PreventDefault();
+    event.preventDefault();
     try {
       const { data } = await addUser({ variables: { ...formState } });
 
