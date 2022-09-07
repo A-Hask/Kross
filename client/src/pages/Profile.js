@@ -12,8 +12,9 @@ import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 //import Home from "./Home";
 
-const Profile = () => {
+const Profile = (props) => {
   const { username: userParam } = useParams();
+
   const [addKrossie] = useMutation(ADD_KROSSIE);
   // const [addGame] = useMutation(ADD_GAME);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
