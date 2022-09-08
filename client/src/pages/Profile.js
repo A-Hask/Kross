@@ -60,9 +60,6 @@ const Profile = (props) => {
           <PostList posts={user.posts} title={`${user.username}'s posts...`} />
         </div>
         <div className="col-12 mb-3 col-lg-8">
-          <PostList posts={user.posts} title={`${user.username}'s posts...`} />
-        </div>
-        <div className="col-12 mb-3 col-lg-8">
           <GameList games={user.games} title={`${user.username}'s games...`} />
         </div>
         <div className="col-12 col-lg-3 mb-3">
