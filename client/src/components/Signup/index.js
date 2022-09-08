@@ -43,7 +43,7 @@ const Signup = () => {
     } else if (!event.target.checked) {
       // const index = gameList.indexOf(game);
       // index >= 0 && gameList.splice(index, 1);
-      setGameList(gameList.filter((x) => x != game));
+      setGameList(gameList.filter((x) => x !== game));
     }
   };
 
